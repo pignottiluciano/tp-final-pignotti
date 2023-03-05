@@ -1,0 +1,51 @@
+<h1 mat-dialog-title>Editar Alumno</h1>
+<div mat-dialog-content>
+  <p>Agregar Alumno</p>
+  <form [formGroup]="formularioAgregar">
+    <div class="mb-3">
+      <label for="nombre" class="form-label">Nombre:</label>
+      <input
+        formControlName="nombre"
+        type="text"
+        class="form-control"
+        id="nombre"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="apellido" class="form-label">Apellido:</label>
+      <input
+        formControlName="apellido"
+        type="text"
+        class="form-control"
+        id="apellido"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="edad" class="form-label">Edad:</label>
+      <input
+        formControlName="edad"
+        type="number"
+        class="form-control"
+        id="edad"
+      />
+    </div>
+    <div class="mb-3 form-check">
+      <input
+        formControlName="estado"
+        type="checkbox"
+        class="form-check-input"
+        id="estado"
+      />
+      <label class="form-check-label" for="estado"
+        >Seleccione para activar alumno</label
+      >
+    </div>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cerrar</button>
+  <button mat-button [mat-dialog-close]="data" (click)="addAlumno()">
+    Agregar
+  </button>
+</div>
+

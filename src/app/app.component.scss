@@ -1,0 +1,17 @@
+.container {
+    display: flex;
+    height: 95vh;
+    width: 100vw;
+    min-width: 100vw;
+    padding: 0;
+    .menu {
+      min-height: 95vh;
+      width: 10vw;
+      background: #212121;
+    }
+    .main {
+      min-height: 95vh;
+      width: 95vw;
+    }
+  }
+  

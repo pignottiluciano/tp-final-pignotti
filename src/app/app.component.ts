@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'tp-final-pignotti';
+  idMenu?: string;
+
+  ngOnInit() {
+    this.idMenu = 'inicio';
+  }
 }
