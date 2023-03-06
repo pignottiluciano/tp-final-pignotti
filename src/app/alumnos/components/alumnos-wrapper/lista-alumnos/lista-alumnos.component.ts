@@ -16,6 +16,7 @@ export class ListaAlumnosComponent implements OnInit, OnDestroy{
 
   dataSource!: MatTableDataSource<Alumno>;
   columnas: string[] = ['nombreYApellido', 'edad', 'estado', 'editarEliminar'];
+  suscription: any;
 
 
   constructor(
@@ -23,14 +24,14 @@ export class ListaAlumnosComponent implements OnInit, OnDestroy{
     private dialog: MatDialog
   ) {}
   async ngOnInit(): Promise<void> {
-    this.alumnoService.obtenerAlumnos().subscribe((alumnos: Alumno[]) => {
+    this.suscription = this.alumnoService.obtenerAlumnos().subscribe((alumnos: Alumno[]) => {
       this.alumnos = alumnos;
     });
     this.actualizarLista();
   }
 
   ngOnDestroy() {
-   
+   this.suscription.unsubscribe();
   }
 
   cambioEstado(id: any) {

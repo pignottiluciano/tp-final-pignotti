@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Alumno } from 'src/app/models/alumno';
 
 @Injectable({
@@ -28,24 +28,15 @@ export class AlumnosService {
     },
   ];
 
-  constructor() {}
+  private alumnos$: BehaviorSubject<Alumno[]>;
 
-  // obtenerAlumnos(): Array<Alumno> {
-  //   return this.alumnos;
-  // }
-  // obtenerAlumnosPromise(): Promise<Alumno[]> {
-  //   return new Promise((resolve, reject) => {
-  //     if (this.alumnos.length > 0) {
-  //       resolve(this.alumnos);
-  //     } else {
-  //       reject({ codigo: 0, descripcion: 'arreglo vacio', data: [] });
-  //     }
-  //   });
-  // }
+  constructor() {
+    this.alumnos$ = new BehaviorSubject<Alumno[]>(this.alumnos);
+  }
+
+
   obtenerAlumnos(): Observable<Alumno[]> {
-    return new Observable<Alumno[]>((suscriptor) => {
-      suscriptor.next(this.alumnos);
-    })
+    return this.alumnos$.asObservable();
   }
 
   eliminarAlumnos(index: number): Array<Alumno> {
@@ -54,8 +45,6 @@ export class AlumnosService {
   }
   agregarAlumno(newAlumno: Alumno) {
     this.alumnos.push(newAlumno);
-
-    console.log('agrego', this.alumnos);
-    return this.alumnos;
+    this.alumnos$.next(this.alumnos);
   }
 }

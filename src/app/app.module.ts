@@ -12,6 +12,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { HomeWrapperComponent } from './components/home-wrapper/home-wrapper.component';
 import { ProfesoresWrapperComponent } from './components/profesores-wrapper/profesores-wrapper.component';
 import { AlumnosModule } from './alumnos/alumnos.module';
+import { CursosModule } from './cursos/cursos.module';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { AlumnosModule } from './alumnos/alumnos.module';
     NgbModule,
     ReactiveFormsModule,
     AlumnosModule,
+    CursosModule,
     AppRoutingModule
   ],
   providers: [],

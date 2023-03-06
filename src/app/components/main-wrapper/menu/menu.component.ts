@@ -17,5 +17,7 @@ export class MenuComponent {
 
   changeWrapper(type: string) {
     this.router.navigate([type]);
+    this.id = type.toUpperCase();
+    this.idChange.emit(this.id);
   }
 }
