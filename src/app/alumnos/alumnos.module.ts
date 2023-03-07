@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MaterialModule } from '../material.module';
+import { MaterialModule } from '../shared/material.module';
 import { AlumnosWrapperComponent } from './components/alumnos-wrapper/alumnos-wrapper.component';
 import { AddAlumnosComponent } from './components/alumnos-wrapper/add-alumnos/add-alumnos.component';
 import { EditAlumnoComponent } from './components/alumnos-wrapper/edit-alumno/edit-alumno.component';
