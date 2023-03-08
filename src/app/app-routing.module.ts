@@ -5,6 +5,9 @@ import { ProfesoresWrapperComponent } from './core/components/profesores-wrapper
 
 const routes: Routes = [
   {path: 'inicio', component: HomeWrapperComponent},
+  {path: 'alumnos', loadChildren: () => import('./alumnos/alumnos.module').then((modulo) => modulo.AlumnosModule)},
+  {path: 'cursos', loadChildren: () => import('./cursos/cursos.module').then((modulo) => modulo.CursosModule)},
+  {path: 'auth', loadChildren: () => import('./autenticacion/autenticacion.module').then((modulo) => modulo.AutenticacionModule)},
   {path: 'profesores', component: ProfesoresWrapperComponent},
   {path: '', redirectTo: 'inicio', pathMatch: 'full'},
   {path: '**', component: HomeWrapperComponent}

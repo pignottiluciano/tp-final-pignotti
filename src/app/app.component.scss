@@ -6,12 +6,14 @@
     padding: 0;
     .menu {
       min-height: 95vh;
+      min-width: 10rem;
       width: 10vw;
       background: #212121;
     }
     .main {
       min-height: 95vh;
-      width: 95vw;
+      width: 80vw;
+      padding: 5px;
     }
   }
   

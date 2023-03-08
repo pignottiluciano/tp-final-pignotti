@@ -6,7 +6,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 import { AlumnosModule } from './alumnos/alumnos.module';
 import { CursosModule } from './cursos/cursos.module';
-import { MainWrapperComponent } from './core/components/main-wrapper/main-wrapper.component';
 import { MenuComponent } from './core/components/main-wrapper/menu/menu.component';
 import { ToolbarComponent } from './core/components/main-wrapper/toolbar/toolbar.component';
 import { HomeWrapperComponent } from './core/components/home-wrapper/home-wrapper.component';
@@ -16,7 +15,6 @@ import { SharedModule } from './shared/shared.module';
 @NgModule({
   declarations: [
     AppComponent,
-    MainWrapperComponent,
     MenuComponent,
     ToolbarComponent,
     HomeWrapperComponent,
@@ -26,8 +24,6 @@ import { SharedModule } from './shared/shared.module';
     BrowserAnimationsModule,
     SharedModule,
     NgbModule,
-    AlumnosModule,
-    CursosModule,
     AppRoutingModule
   ],
   providers: [],

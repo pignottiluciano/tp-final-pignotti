@@ -5,6 +5,9 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
 import {MatSidenavModule} from '@angular/material/sidenav';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 
 
@@ -17,7 +20,10 @@ import {MatSidenavModule} from '@angular/material/sidenav';
     MatToolbarModule,
     MatIconModule,
     MatDialogModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatSlideToggleModule
   ],
   exports: [
     MatTableModule,
@@ -25,7 +31,10 @@ import {MatSidenavModule} from '@angular/material/sidenav';
     MatToolbarModule,
     MatIconModule,
     MatDialogModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatSlideToggleModule
   ]
 })
 export class MaterialModule { }

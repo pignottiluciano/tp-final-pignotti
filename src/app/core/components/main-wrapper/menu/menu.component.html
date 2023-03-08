@@ -1,9 +1,10 @@
 <section class="menu-wrapper">
   <h1>MENU</h1>
   <ul>
-      <li (click)="changeWrapper('inicio')">inicio</li>
-      <li (click)="changeWrapper('alumnos')">Alumnos</li>
-      <li (click)="changeWrapper('cursos')">Cursos</li>
-      <li (click)="changeWrapper('profesores')">Profesores</li>
+      <li routerLink="inicio" (click)="changeWrapper('inicio')">inicio</li>
+      <li routerLink="alumnos" (click)="changeWrapper('alumnos')">Alumnos</li>
+      <li routerLink="cursos" (click)="changeWrapper('cursos')">Cursos</li>
+      <li routerLink="profesores" (click)="changeWrapper('profesores')">Profesores</li>
+      <li routerLink="auth" (click)="changeWrapper('auth')">Autenticacion</li>
   </ul>
 </section>

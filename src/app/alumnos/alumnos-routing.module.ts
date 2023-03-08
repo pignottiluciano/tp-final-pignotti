@@ -4,7 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AlumnosWrapperComponent } from './components/alumnos-wrapper/alumnos-wrapper.component';
 
 const routes: Routes = [
-  {path: 'alumnos', component: AlumnosWrapperComponent},
+  {path: '', component: AlumnosWrapperComponent},
 ];
 
 @NgModule({

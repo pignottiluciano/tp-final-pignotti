@@ -16,7 +16,6 @@ export class MenuComponent {
   constructor(private router: Router) {}
 
   changeWrapper(type: string) {
-    this.router.navigate([type]);
     this.id = type.toUpperCase();
     this.idChange.emit(this.id);
   }
