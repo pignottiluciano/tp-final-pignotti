@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeWrapperComponent } from './components/home-wrapper/home-wrapper.component';
-import { ProfesoresWrapperComponent } from './components/profesores-wrapper/profesores-wrapper.component';
+import { HomeWrapperComponent } from './core/components/home-wrapper/home-wrapper.component';
+import { ProfesoresWrapperComponent } from './core/components/profesores-wrapper/profesores-wrapper.component';
 
 const routes: Routes = [
   {path: 'inicio', component: HomeWrapperComponent},
