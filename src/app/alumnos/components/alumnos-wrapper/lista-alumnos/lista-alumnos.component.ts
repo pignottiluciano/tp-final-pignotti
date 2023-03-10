@@ -21,6 +21,7 @@ export class ListaAlumnosComponent implements OnInit, OnDestroy{
   columnas: string[] = ['nombreYApellido', 'edad', 'estado', 'editarEliminar'];
   suscription: any;
   sesion$!: Observable<Sesion>
+  alumnos$!: Observable<Alumno[]>
 
 
   constructor(
@@ -29,9 +30,6 @@ export class ListaAlumnosComponent implements OnInit, OnDestroy{
     private sesionService: SesionService
   ) {}
   async ngOnInit(): Promise<void> {
-    this.suscription = this.alumnoService.obtenerAlumnos().subscribe((alumnos: Alumno[]) => {
-      this.alumnos = alumnos;
-    });
     this.sesion$ = this.sesionService.obtenerSesion();
     this.actualizarLista();
   }
@@ -51,7 +49,12 @@ export class ListaAlumnosComponent implements OnInit, OnDestroy{
   }
 
   actualizarLista() {
-    this.dataSource = new MatTableDataSource<Alumno>(this.alumnos);
+    this.alumnos$ = this.alumnoService.obtenerAlumnos();
+    this.alumnos$.subscribe((alumno: Alumno[]) =>{
+      this.alumnos = alumno
+      console.log(this.alumnos)
+      this.dataSource = new MatTableDataSource<Alumno>(this.alumnos);
+    })
   }
 
   modalEdit(alumno: Alumno) {
@@ -66,9 +69,9 @@ export class ListaAlumnosComponent implements OnInit, OnDestroy{
     });
   }
 
-  eliminarUsuario(index: number, id: any) {
+  eliminarUsuario(alumno: Alumno) {
     if (confirm('Quiere Eliminar este alumno?') && this.alumnos) {
-      this.alumnos = this.alumnoService.eliminarAlumnos(index);
+      this.alumnoService.eliminarAlumno(alumno).subscribe((alumno: Alumno) => {});
       this.actualizarLista();
     }
   }

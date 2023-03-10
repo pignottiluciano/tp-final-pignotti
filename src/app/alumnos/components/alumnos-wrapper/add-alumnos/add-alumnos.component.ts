@@ -26,7 +26,7 @@ export class AddAlumnosComponent {
     });
   }
   async ngOnInit(): Promise<void> {
-    this.alumnosService.obtenerAlumnos().subscribe((alumnos: Alumno[]) => {
+    (await this.alumnosService.obtenerAlumnos()).subscribe((alumnos: Alumno[]) => {
       this.alumnos = alumnos;
     });
   }

@@ -13,6 +13,7 @@ import { EditCursoComponent } from '../edit-curso/edit-curso.component';
 })
 export class ListaCursosComponent implements OnInit, OnDestroy{
   cursos!: Curso[];
+  data!: any;
 
   dataSource!: MatTableDataSource<Curso>;
   columnas: string[] = ['nombre', 'profesor', 'comienzo', 'fin', 'editarEliminar'];
@@ -24,14 +25,14 @@ export class ListaCursosComponent implements OnInit, OnDestroy{
     private dialog: MatDialog
   ) {}
   async ngOnInit(): Promise<void> {
-    this.suscripcion = this.cursosService.obtenerCursos().subscribe((cursos: Curso[]) => {
-      this.cursos = cursos;
+    this.suscripcion = (await this.cursosService.obtenerCursos()).subscribe(async (data: Curso[]) => {
+      this.cursos = data;
+      this.actualizarLista();
     });
-    this.actualizarLista();
   }
 
   ngOnDestroy() {
-   this.suscripcion.unsubscribe();
+    this.suscripcion.unsubscribe();
   }
 
   actualizarLista() {
@@ -52,8 +53,8 @@ export class ListaCursosComponent implements OnInit, OnDestroy{
 
   eliminarCurso(index: number, id: any) {
     if (confirm('Quiere Eliminar este alumno?') && this.cursos) {
-      this.cursos = this.cursosService.eliminarCursos(index);
-      this.actualizarLista();
+      // this.cursos = this.cursosService.eliminarCursos(index);
+      // this.actualizarLista();
     }
   }
 }

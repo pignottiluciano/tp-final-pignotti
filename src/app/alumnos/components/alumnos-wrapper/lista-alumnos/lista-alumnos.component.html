@@ -41,7 +41,7 @@
           mat-icon-button
           color="warn"
           *ngIf="sesion.usuarioActivo?.esAdmin"
-          (click)="eliminarUsuario(i, element.id)"
+          (click)="eliminarUsuario(element)"
         >
           <mat-icon>delete</mat-icon>
         </button>
