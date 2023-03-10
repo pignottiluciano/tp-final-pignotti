@@ -2,9 +2,10 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { AlumnosWrapperComponent } from './components/alumnos-wrapper/alumnos-wrapper.component';
+import { SesionGuard } from '../core/guards/sesion.guard';
 
 const routes: Routes = [
-  {path: '', component: AlumnosWrapperComponent},
+  {path: '', canActivate: [SesionGuard], component: AlumnosWrapperComponent},
 ];
 
 @NgModule({

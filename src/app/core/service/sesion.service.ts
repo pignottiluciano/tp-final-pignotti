@@ -24,7 +24,7 @@ export class SesionService {
   }
 
   
-  cerrarSesion(sesion: Sesion) {
-
+  logout(sesion: Sesion) {
+    this.sesion$.next(sesion);
   }
 }

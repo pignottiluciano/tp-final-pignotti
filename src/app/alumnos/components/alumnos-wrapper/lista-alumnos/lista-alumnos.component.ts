@@ -1,8 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
+import { Observable } from 'rxjs';
 import { AlumnosService } from 'src/app/alumnos/service/alumnos.service';
+import { SesionService } from 'src/app/core/service/sesion.service';
 import { Alumno } from 'src/app/models/alumno';
+import { Sesion } from 'src/app/models/sesion';
 import { AddAlumnosComponent } from '../add-alumnos/add-alumnos.component';
 import { EditAlumnoComponent } from '../edit-alumno/edit-alumno.component';
 
@@ -17,16 +20,19 @@ export class ListaAlumnosComponent implements OnInit, OnDestroy{
   dataSource!: MatTableDataSource<Alumno>;
   columnas: string[] = ['nombreYApellido', 'edad', 'estado', 'editarEliminar'];
   suscription: any;
+  sesion$!: Observable<Sesion>
 
 
   constructor(
     private alumnoService: AlumnosService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private sesionService: SesionService
   ) {}
   async ngOnInit(): Promise<void> {
     this.suscription = this.alumnoService.obtenerAlumnos().subscribe((alumnos: Alumno[]) => {
       this.alumnos = alumnos;
     });
+    this.sesion$ = this.sesionService.obtenerSesion();
     this.actualizarLista();
   }
 

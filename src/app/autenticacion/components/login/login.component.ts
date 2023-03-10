@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Router, RouterModule } from '@angular/router';
 import { Usuario } from 'src/app/models/usuario';
 import { LoginService } from '../../service/login.service';
 
@@ -11,7 +12,7 @@ import { LoginService } from '../../service/login.service';
 export class LoginComponent implements OnInit {
   formulario!: FormGroup;
 
-  constructor(private loginService: LoginService) {}
+  constructor(private loginService: LoginService, private router: Router) {}
 
   ngOnInit(): void {
     this.formulario = new FormGroup({
@@ -27,7 +28,7 @@ export class LoginComponent implements OnInit {
       contrasena: this.formulario.value.contrasena,
       esAdmin: this.formulario.value.esAdmin,
     };
-    console.log(usuario);
     this.loginService.login(usuario);
+    this.router.navigate(['inicio']);
   }
 }
