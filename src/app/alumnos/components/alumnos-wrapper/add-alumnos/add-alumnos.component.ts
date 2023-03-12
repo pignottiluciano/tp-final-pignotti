@@ -7,7 +7,7 @@ import { Alumno } from 'src/app/models/alumno';
 @Component({
   selector: 'app-add-alumnos',
   templateUrl: './add-alumnos.component.html',
-  styleUrls: ['./add-alumnos.component.scss']
+  styleUrls: ['./add-alumnos.component.scss'],
 })
 export class AddAlumnosComponent {
   formularioAgregar: FormGroup;
@@ -26,9 +26,11 @@ export class AddAlumnosComponent {
     });
   }
   async ngOnInit(): Promise<void> {
-    (await this.alumnosService.obtenerAlumnos()).subscribe((alumnos: Alumno[]) => {
-      this.alumnos = alumnos;
-    });
+    (await this.alumnosService.obtenerAlumnos()).subscribe(
+      (alumnos: Alumno[]) => {
+        this.alumnos = alumnos;
+      }
+    );
   }
 
   addAlumno() {
@@ -39,9 +41,12 @@ export class AddAlumnosComponent {
       edad: this.formularioAgregar.value.edad,
       estado: this.formularioAgregar.value.estado,
     };
+
     console.log(newAlumno);
-    this.alumnosService.agregarAlumno(newAlumno);
-    this.dialogRef.close();
+    this.alumnosService.agregarAlumno(newAlumno).subscribe((alumno: Alumno) => {
+      alert(`${alumno.nombre} ${alumno.apellido} se agrego como alumno.`);
+      this.dialogRef.close(alumno);
+    });
   }
 
   onNoClick(): void {

@@ -1,44 +1,47 @@
 <section class="main">
-    <!-- <button mat-raised-button color="primary" (click)="AgregarCurso()">
+  <!-- <button mat-raised-button color="primary" (click)="AgregarCurso()">
       Agregar Alumno
     </button> -->
-    <table mat-table [dataSource]="dataSource">
-      <ng-container matColumnDef="nombre">
-        <th mat-header-cell *matHeaderCellDef class="title">Curso</th>
-        <td mat-cell *matCellDef="let element">
-          {{ element.nombre }}
-        </td>
-      </ng-container>
-      <ng-container matColumnDef="profesor">
-        <th mat-header-cell *matHeaderCellDef class="title">Profesor</th>
-        <td mat-cell *matCellDef="let element">{{ element.profesor?.nombre }}</td>
-      </ng-container>
-      <ng-container matColumnDef="comienzo">
-        <th mat-header-cell *matHeaderCellDef class="title">Comienzo</th>
-        <td mat-cell *matCellDef="let element">{{ element.fechaInicio | date:'dd/MM/yyyy'}}</td>
-      </ng-container>
-      <ng-container matColumnDef="fin">
-        <th mat-header-cell *matHeaderCellDef class="title">Fin</th>
-        <td mat-cell *matCellDef="let element">{{ element.FechaFin | date:'dd/MM/yyyy'}}</td>
-      </ng-container>
-      <ng-container matColumnDef="editarEliminar">
-        <th mat-header-cell *matHeaderCellDef class="title">Acciones</th>
-        <td mat-cell *matCellDef="let element; let i = index">
-          <button mat-icon-button color="primary" disabled (click)="modalEdit(element)">
-            <mat-icon>edit</mat-icon>
-          </button>
-          <button
-            mat-icon-button
-            color="warn"
-            (click)="eliminarCurso(i, element.id)"
-          >
-            <mat-icon>delete</mat-icon>
-          </button>
-        </td>
-      </ng-container>
-  
-      <tr mat-footer-row *matHeaderRowDef="columnas"></tr>
-      <tr mat-row *matRowDef="let row; columns: columnas"></tr>
-    </table>
-  </section>
-  
+  <table mat-table [dataSource]="dataSource">
+    <ng-container matColumnDef="nombre">
+      <th mat-header-cell *matHeaderCellDef class="title">Curso</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.nombre }}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="profesor">
+      <th mat-header-cell *matHeaderCellDef class="title">Profesor</th>
+      <td mat-cell *matCellDef="let element">{{ element.profesor?.nombre }}</td>
+    </ng-container>
+    <ng-container matColumnDef="comienzo">
+      <th mat-header-cell *matHeaderCellDef class="title">Comienzo</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.fechaInicio | date : "dd/MM/yyyy" }}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="fin">
+      <th mat-header-cell *matHeaderCellDef class="title">Fin</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.FechaFin | date : "dd/MM/yyyy" }}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="editarEliminar">
+      <th mat-header-cell *matHeaderCellDef class="title">Acciones</th>
+      <td mat-cell *matCellDef="let element; let i = index">
+        <button mat-icon-button color="primary" (click)="modalEdit(element)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button
+          mat-icon-button
+          color="warn"
+          (click)="eliminarCurso(i, element.id)"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-footer-row *matHeaderRowDef="columnas"></tr>
+    <tr mat-row *matRowDef="let row; columns: columnas"></tr>
+  </table>
+</section>

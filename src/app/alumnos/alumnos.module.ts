@@ -12,12 +12,8 @@ import { SharedModule } from '../shared/shared.module';
     AlumnosWrapperComponent,
     AddAlumnosComponent,
     EditAlumnoComponent,
-    ListaAlumnosComponent
+    ListaAlumnosComponent,
   ],
-  imports: [
-    CommonModule,
-    SharedModule,
-    AlumnosRoutingModule
-  ]
+  imports: [CommonModule, SharedModule, AlumnosRoutingModule],
 })
-export class AlumnosModule { }
+export class AlumnosModule {}

@@ -5,11 +5,11 @@ import { AlumnosWrapperComponent } from './components/alumnos-wrapper/alumnos-wr
 import { SesionGuard } from '../core/guards/sesion.guard';
 
 const routes: Routes = [
-  {path: '', canActivate: [SesionGuard], component: AlumnosWrapperComponent},
+  { path: '', canActivate: [SesionGuard], component: AlumnosWrapperComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class AlumnosRoutingModule {}

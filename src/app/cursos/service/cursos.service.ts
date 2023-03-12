@@ -67,7 +67,7 @@ export class CursosService {
 
   // private cursos$: BehaviorSubject<Curso[]>;
 
-  constructor( private http: HttpClient) {
+  constructor(private http: HttpClient) {
     // this.cursos$ = new BehaviorSubject<Curso[]>(this.cursos);
   }
 
@@ -75,9 +75,6 @@ export class CursosService {
     return this.http.get<Curso[]>(`${env.apiURL}/cursos`);
   }
 
-  eliminarCursos(index: number) {
-  }
-  agregarCurso(newCurso: Curso) {
-  }
-
+  eliminarCursos(index: number) {}
+  agregarCurso(newCurso: Curso) {}
 }

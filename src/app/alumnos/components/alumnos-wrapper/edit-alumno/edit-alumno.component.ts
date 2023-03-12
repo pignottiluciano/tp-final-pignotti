@@ -5,17 +5,20 @@ import {
   MatDialogRef,
   MAT_DIALOG_DATA,
 } from '@angular/material/dialog';
+import { AlumnosService } from 'src/app/alumnos/service/alumnos.service';
 import { Alumno } from 'src/app/models/alumno';
+import { Curso } from 'src/app/models/curso';
 
 @Component({
   selector: 'app-edit-alumno',
   templateUrl: './edit-alumno.component.html',
-  styleUrls: ['./edit-alumno.component.scss']
+  styleUrls: ['./edit-alumno.component.scss'],
 })
 export class EditAlumnoComponent {
   formularioEditar: FormGroup;
 
   constructor(
+    private alumnosService: AlumnosService,
     public dialogRef: MatDialogRef<EditAlumnoComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Alumno
   ) {
@@ -28,11 +31,16 @@ export class EditAlumnoComponent {
   }
 
   edit() {
-    this.data.nombre = this.formularioEditar.value.nombre;
-    this.data.apellido = this.formularioEditar.value.apellido;
-    this.data.edad = this.formularioEditar.value.edad;
-    this.data.estado = this.formularioEditar.value.estado;
-    this.dialogRef.close();
+    let alumno: Alumno = {
+      id: this.data.id,
+      nombre: this.formularioEditar.value.nombre,
+      apellido: this.formularioEditar.value.apellido,
+      edad: this.formularioEditar.value.edad,
+      estado: this.formularioEditar.value.estado,
+    };
+    this.alumnosService.editarAlumno(alumno).subscribe((alumno: Alumno) => {
+      this.dialogRef.close(alumno);
+    });
   }
 
   onNoClick(): void {
