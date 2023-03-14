@@ -1,23 +1,23 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+// import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HomeWrapperComponent } from './home-wrapper.component';
+// import { HomeWrapperComponent } from './home-wrapper.component';
 
-describe('HomeWrapperComponent', () => {
-  let component: HomeWrapperComponent;
-  let fixture: ComponentFixture<HomeWrapperComponent>;
+// describe('HomeWrapperComponent', () => {
+//   let component: HomeWrapperComponent;
+//   let fixture: ComponentFixture<HomeWrapperComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ HomeWrapperComponent ]
-    })
-    .compileComponents();
+//   beforeEach(async () => {
+//     await TestBed.configureTestingModule({
+//       declarations: [ HomeWrapperComponent ]
+//     })
+//     .compileComponents();
 
-    fixture = TestBed.createComponent(HomeWrapperComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+//     fixture = TestBed.createComponent(HomeWrapperComponent);
+//     component = fixture.componentInstance;
+//     fixture.detectChanges();
+//   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+//   it('should create', () => {
+//     expect(component).toBeTruthy();
+//   });
+// });

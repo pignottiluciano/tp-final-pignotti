@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AlumnosService } from 'src/app/alumnos/service/alumnos.service';
 import { Alumno } from 'src/app/models/alumno';
@@ -19,9 +19,9 @@ export class AddAlumnosComponent {
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     this.formularioAgregar = new FormGroup({
-      nombre: new FormControl(),
-      apellido: new FormControl(),
-      edad: new FormControl(),
+      nombre: new FormControl('', [Validators.required]),
+      apellido: new FormControl('', [Validators.required]),
+      edad: new FormControl('', [Validators.required]),
       estado: new FormControl(),
     });
   }
