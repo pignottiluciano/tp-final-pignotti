@@ -35,7 +35,7 @@ export class AddAlumnosComponent {
 
   addAlumno() {
     const newAlumno: Alumno = {
-      id: this.alumnos.length + 1,
+      id: 1,
       nombre: this.formularioAgregar.value.nombre,
       apellido: this.formularioAgregar.value.apellido,
       edad: this.formularioAgregar.value.edad,

@@ -51,7 +51,7 @@ export class ListaAlumnosComponent implements OnInit, OnDestroy {
 
   actualizarLista() {
     this.alumnos$ = this.alumnoService.obtenerAlumnos();
-    this.alumnos$.subscribe((alumno: Alumno[]) => {
+    this.suscription  = this.alumnos$.subscribe((alumno: Alumno[]) => {
       this.alumnos = alumno;
       console.log(this.alumnos);
       this.dataSource = new MatTableDataSource<Alumno>(this.alumnos);
