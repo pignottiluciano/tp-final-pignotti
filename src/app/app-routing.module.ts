@@ -18,8 +18,17 @@ const routes: Routes = [
   },
   {
     path: 'cursos',
+    canActivate: [SesionGuard],
     loadChildren: () =>
       import('./cursos/cursos.module').then((modulo) => modulo.CursosModule),
+  },
+  {
+    path: 'inscripciones',
+    canActivate: [SesionGuard],
+    loadChildren: () =>
+      import('./inscripciones/inscripciones.module').then(
+        (modulo) => modulo.InscripcionesModule
+      ),
   },
   {
     path: 'auth',
@@ -33,8 +42,13 @@ const routes: Routes = [
     canActivate: [SesionGuard],
     component: ProfesoresWrapperComponent,
   },
-  { path: '', redirectTo: 'inicio', pathMatch: 'full' },
-  { path: '**', component: HomeWrapperComponent },
+  {
+    path: '',
+    canActivate: [SesionGuard],
+    redirectTo: 'inicio',
+    pathMatch: 'full',
+  },
+  { path: '**', canActivate: [SesionGuard], component: HomeWrapperComponent },
 ];
 
 @NgModule({

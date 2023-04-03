@@ -16,8 +16,8 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.formulario = new FormGroup({
-      usuario: new FormControl(''),
-      contrasena: new FormControl(''),
+      usuario: new FormControl(),
+      contrasena: new FormControl(),
       esAdmin: new FormControl(false),
     });
   }

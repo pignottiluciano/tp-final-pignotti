@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { CursosService } from 'src/app/cursos/service/cursos.service';
 import { Curso } from 'src/app/models/curso';
 import { AddCursosComponent } from '../add-cursos/add-cursos.component';
@@ -15,6 +16,8 @@ import { EditCursoComponent } from '../edit-curso/edit-curso.component';
 export class ListaCursosComponent implements OnInit, OnDestroy {
   cursos!: Curso[];
   data!: any;
+  cursos$!: Observable<Curso[]>;
+  suscription: any;
 
   dataSource!: MatTableDataSource<Curso>;
   columnas: string[] = [
@@ -41,15 +44,31 @@ export class ListaCursosComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    // this.suscripcion.unsubscribe();
+    this.suscripcion.unsubscribe();
   }
 
+  // actualizarLista() {
+  //   this.dataSource = new MatTableDataSource<Curso>(this.cursos);
+  // }
   actualizarLista() {
-    this.dataSource = new MatTableDataSource<Curso>(this.cursos);
+    this.cursos$ = this.cursosService.obtenerCursos();
+    this.suscription  = this.cursos$.subscribe((curso: Curso[]) => {
+      this.cursos = curso;
+      this.dataSource = new MatTableDataSource<Curso>(this.cursos);
+    });
   }
+
+  // modalEdit(curso: Curso) {
+  //   this.router.navigate(['cursos/edit', { curso }]);
+  // }
+  
 
   modalEdit(curso: Curso) {
-    this.router.navigate(['cursos/edit', { curso }]);
+    const dialogRef = this.dialog.open(EditCursoComponent, { data: curso });
+    dialogRef.afterClosed().subscribe((curso: Curso) => {
+      this.actualizarLista();
+      alert(`${curso.nombre} editado satifactoriamente`);
+    });
   }
 
   AgregarCurso() {
@@ -60,10 +79,20 @@ export class ListaCursosComponent implements OnInit, OnDestroy {
     });
   }
 
-  eliminarCurso(index: number, id: any) {
-    if (confirm('Quiere Eliminar este alumno?') && this.cursos) {
-      // this.cursos = this.cursosService.eliminarCursos(index);
-      // this.actualizarLista();
+  // eliminarCurso(index: number, id: any) {
+  //   if (confirm('Quiere Eliminar este alumno?') && this.cursos) {
+  //     // this.cursos = this.cursosService.eliminarCursos(index);
+  //     // this.actualizarLista();
+  //   }
+  // }
+  eliminarCurso(curso: Curso) {
+    if (confirm('Quiere Eliminar este curso?') && curso) {
+      this.cursosService
+        .eliminarCurso(curso)
+        .subscribe((curso: Curso) => {
+
+          this.actualizarLista();
+        });
     }
   }
 }

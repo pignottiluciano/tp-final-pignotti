@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Alumno } from 'src/app/models/alumno';
-import { Curso } from 'src/app/models/curso';
 import { env } from 'src/environment/environment';
 
 @Injectable({
@@ -14,7 +13,6 @@ export class AlumnosService {
   obtenerAlumnos(): Observable<Alumno[]> {
     return this.http.get<Alumno[]>(`${env.apiURL}/alumnos`);
   }
-
   editarAlumno(alumno: Alumno): Observable<Alumno> {
     return this.http.put<Alumno>(`${env.apiURL}/alumnos/${alumno.id}`, alumno);
   }

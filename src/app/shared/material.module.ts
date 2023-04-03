@@ -8,6 +8,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatSelectModule } from '@angular/material/select';
 
 
 
@@ -23,7 +24,8 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     MatSidenavModule,
     MatInputModule,
     MatFormFieldModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatSelectModule 
   ],
   exports: [
     MatTableModule,
@@ -34,7 +36,8 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     MatSidenavModule,
     MatInputModule,
     MatFormFieldModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatSelectModule
   ]
 })
 export class MaterialModule { }

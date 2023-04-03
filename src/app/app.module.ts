@@ -11,6 +11,7 @@ import { ToolbarComponent } from './core/components/main-wrapper/toolbar/toolbar
 import { HomeWrapperComponent } from './core/components/home-wrapper/home-wrapper.component';
 import { ProfesoresWrapperComponent } from './core/components/profesores-wrapper/profesores-wrapper.component';
 import { SharedModule } from './shared/shared.module';
+import { ModalComfirmComponent } from './core/components/modal-comfirm/modal-comfirm.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { SharedModule } from './shared/shared.module';
     MenuComponent,
     ToolbarComponent,
     HomeWrapperComponent,
-    ProfesoresWrapperComponent],
+    ProfesoresWrapperComponent,
+    ModalComfirmComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

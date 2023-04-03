@@ -53,7 +53,6 @@ export class ListaAlumnosComponent implements OnInit, OnDestroy {
     this.alumnos$ = this.alumnoService.obtenerAlumnos();
     this.suscription  = this.alumnos$.subscribe((alumno: Alumno[]) => {
       this.alumnos = alumno;
-      console.log(this.alumnos);
       this.dataSource = new MatTableDataSource<Alumno>(this.alumnos);
     });
   }
@@ -61,8 +60,8 @@ export class ListaAlumnosComponent implements OnInit, OnDestroy {
   modalEdit(alumno: Alumno) {
     const dialogRef = this.dialog.open(EditAlumnoComponent, { data: alumno });
     dialogRef.afterClosed().subscribe((alumno: Alumno) => {
-      alert(`${alumno.nombre} ${alumno.apellido} editado satifactoriamente`);
       this.actualizarLista();
+      alert(`${alumno.nombre} ${alumno.apellido} editado satifactoriamente`);
     });
   }
 
@@ -70,7 +69,7 @@ export class ListaAlumnosComponent implements OnInit, OnDestroy {
     const dialogRef = this.dialog.open(AddAlumnosComponent, {});
     dialogRef.afterClosed().subscribe((alumno: Alumno) => {
       this.actualizarLista();
-      console.log('actualizo');
+      alert(`${alumno.nombre} ${alumno.apellido} se agrego satifactoriamente`);
     });
   }
 
@@ -78,8 +77,10 @@ export class ListaAlumnosComponent implements OnInit, OnDestroy {
     if (confirm('Quiere Eliminar este alumno?') && this.alumnos) {
       this.alumnoService
         .eliminarAlumno(alumno)
-        .subscribe((alumno: Alumno) => {});
-      this.actualizarLista();
+        .subscribe((alumno: Alumno) => {
+
+          this.actualizarLista();
+        });
     }
   }
 }

@@ -1,0 +1,18 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .formulario {
+    width: 30vw;
+    div {
+      .select {
+        width: 30vw;
+      }
+    }
+    &.disabled{
+        cursor: default;
+        background-color: gray;
+        box-shadow: none;
+    }
+  }
+}

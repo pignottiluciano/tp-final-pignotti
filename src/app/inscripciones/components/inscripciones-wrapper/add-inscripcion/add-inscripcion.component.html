@@ -1,0 +1,37 @@
+<div class="container">
+
+    <form [formGroup]="formularioInscripcion" (ngSubmit)="addInscripcion()" class="formulario">
+        <div class="mb-2">
+            <mat-form-field appearance="fill" class="select">
+                <mat-label>Selecionar Alumno:</mat-label>
+                <mat-select formControlName="alumno">
+                    <mat-option *ngFor="let alumno of alumnos" [value]="{id: alumno.id,nombre: alumno.nombre, apellido:alumno.apellido}">
+                        {{alumno.id + "-" + alumno.nombre + ' ' + alumno.apellido}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="mb-2">
+            <mat-form-field appearance="fill" class="select">
+                <mat-label>Seleccionar Curso:</mat-label>
+                <mat-select formControlName="curso">
+                    <mat-option *ngFor="let curso of cursos" [value]="{id: curso.id, curso: curso.nombre}">
+                        {{curso.id + "-" + curso.nombre}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="mb-2">
+          <label for="fecha" class="form-label">Fecha De Inscripcion:</label>
+          <input
+            formControlName="fecha"
+            type="date"
+            class="form-control"
+            id="fecha"
+          />
+        </div>
+        
+        <button mat-button color="warn" (click)="onNoClick()">Cerrar</button>
+        <button mat-raised-button color="primary" [disabled]="formularioInscripcion.invalid">Submit</button>
+    </form>
+</div>

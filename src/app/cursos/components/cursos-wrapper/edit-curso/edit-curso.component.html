@@ -1,1 +1,65 @@
-<p>edit-curso works!</p>
+<h1 mat-dialog-title>Editar Curso</h1>
+<div mat-dialog-content>
+  <form [formGroup]="formularioEditar">
+    <div class="mb-3">
+      <label for="nombre" class="form-label">Nombre:</label>
+      <input
+        formControlName="nombre"
+        type="text"
+        class="form-control"
+        id="nombre"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="comision" class="form-label">Comision:</label>
+      <input
+        formControlName="comision"
+        type="text"
+        class="form-control"
+        id="comision"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="profesor" class="form-label">Profesor:</label>
+      <input
+        formControlName="profesor"
+        type="text"
+        class="form-control"
+        id="profesor"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="fechaInicio" class="form-label">Fecha Inicio:</label>
+      <input
+        formControlName="fechaInicio"
+        type="date"
+        class="form-control"
+        id="fechaInicio"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="FechaFin" class="form-label">Fecha Fin:</label>
+      <input
+        formControlName="FechaFin"
+        type="date"
+        class="form-control"
+        id="FechaFin"
+      />
+    </div>
+    <div class="mb-3 form-check">
+      <input
+        formControlName="inscripcionAbierta"
+        type="checkbox"
+        class="form-check-input"
+        id="inscripcionAbierta"
+      />
+      <label class="form-check-label" for="inscripcionAbierta"
+        >Abrir inscripcion</label
+      >
+    </div>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cerrar</button>
+  <button mat-button (click)="edit()">Editar</button>
+</div>

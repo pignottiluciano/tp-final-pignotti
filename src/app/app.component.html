@@ -1,6 +1,6 @@
-<app-toolbar [id]="idMenu"></app-toolbar>
+<app-toolbar [id]="idMenu" *ngIf="sesionActiv"></app-toolbar>
 <div class="container">
-  <app-menu [(id)]="idMenu" class="menu"></app-menu>
+  <app-menu [(id)]="idMenu" class="menu" *ngIf="sesionActiv"></app-menu>
   <section class="main">
     <router-outlet></router-outlet>
   </section>
