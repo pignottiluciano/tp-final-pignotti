@@ -12,6 +12,8 @@ import { HomeWrapperComponent } from './core/components/home-wrapper/home-wrappe
 import { ProfesoresWrapperComponent } from './core/components/profesores-wrapper/profesores-wrapper.component';
 import { SharedModule } from './shared/shared.module';
 import { ModalComfirmComponent } from './core/components/modal-comfirm/modal-comfirm.component';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { ModalComfirmComponent } from './core/components/modal-comfirm/modal-com
     BrowserAnimationsModule,
     SharedModule,
     NgbModule,
-    AppRoutingModule
+    AppRoutingModule,
+    StoreModule.forRoot({}, {}),
+    EffectsModule.forRoot([])
   ],
   providers: [],
   bootstrap: [AppComponent],

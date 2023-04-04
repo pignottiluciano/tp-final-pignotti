@@ -13,8 +13,15 @@ const routes: Routes = [
   },
   {
     path: 'alumnos',
+    canActivate: [SesionGuard],
     loadChildren: () =>
       import('./alumnos/alumnos.module').then((modulo) => modulo.AlumnosModule),
+  },
+  {
+    path: 'usuarios',
+    canActivate: [AdminGuard],
+    loadChildren: () =>
+      import('./usuarios/usuarios.module').then((modulo) => modulo.UsuariosModule),
   },
   {
     path: 'cursos',
@@ -44,11 +51,10 @@ const routes: Routes = [
   },
   {
     path: '',
-    canActivate: [SesionGuard],
     redirectTo: 'inicio',
     pathMatch: 'full',
   },
-  { path: '**', canActivate: [SesionGuard], component: HomeWrapperComponent },
+  { path: '**', component: HomeWrapperComponent },
 ];
 
 @NgModule({

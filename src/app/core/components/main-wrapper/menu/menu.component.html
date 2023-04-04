@@ -1,10 +1,10 @@
 <section class="menu-wrapper">
   <h1>MENU</h1>
-  <ul>
+  <ul *ngIf="sesion$ | async as sesion">
       <li routerLink="inicio" (click)="changeWrapper('inicio')">inicio</li>
       <li routerLink="alumnos" (click)="changeWrapper('alumnos')">Alumnos</li>
+      <li routerLink="usuarios" *ngIf="sesion.usuarioActivo?.esAdmin" (click)="changeWrapper('usuarios')">Usuarios</li>
       <li routerLink="cursos" (click)="changeWrapper('cursos')">Cursos</li>
-      <li routerLink="profesores" (click)="changeWrapper('profesores')">Profesores</li>
       <li routerLink="inscripciones" (click)="changeWrapper('inscripciones')">inscripciones</li>
       <li (click)="logout()">Logout</li>
   </ul>

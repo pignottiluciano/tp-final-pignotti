@@ -1,0 +1,62 @@
+<h1 mat-dialog-title>Agregar Usuario</h1>
+<div mat-dialog-content>
+  <p>Agregar Usuario/p></p>
+  <form [formGroup]="formularioAgregar">
+    <div class="mb-3">
+      <label for="nombre" class="form-label">Nombre:</label>
+      <input
+        formControlName="nombre"
+        type="text"
+        class="form-control"
+        id="nombre"
+      />
+      <div class="mb-3">
+        <label for="apellido" class="form-label">Apellido:</label>
+        <input
+          formControlName="apellido"
+          type="text"
+          class="form-control"
+          id="apellido"
+        />
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="usuario" class="form-label">Usuario:</label>
+      <input
+        formControlName="usuario"
+        type="text"
+        class="form-control"
+        id="usuario"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="contasena" class="form-label">Contraeña:</label>
+      <input
+        formControlName="contasena"
+        type="text"
+        class="form-control"
+        id="contasena"
+      />
+    </div>
+    <div class="mb-3 form-check">
+      <input
+        formControlName="esAdmin"
+        type="checkbox"
+        class="form-check-input"
+        id="esAdmin"
+      />
+      <label class="form-check-label" for="esAdmin">Es Admin?</label>
+    </div>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cerrar</button>
+  <button
+    id="btnAgregar"
+    mat-button
+    [mat-dialog-close]="data"
+    (click)="addUsuario()"
+  >
+    Agregar
+  </button>
+</div>
