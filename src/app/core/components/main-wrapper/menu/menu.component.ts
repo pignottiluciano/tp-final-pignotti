@@ -3,6 +3,9 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { SesionService } from 'src/app/core/service/sesion.service';
 import { Sesion } from 'src/app/models/sesion';
+import { AuthState } from 'src/app/autenticacion/components/state/auth.reducer';
+import { Store } from '@ngrx/store';
+import { selectUsuarioAdmin } from 'src/app/autenticacion/components/state/auth.selectors';
 
 @Component({
   selector: 'app-menu',
@@ -16,14 +19,14 @@ export class MenuComponent implements OnInit {
   @Output()
   idChange = new EventEmitter<string>();
 
-  
-  sesion$!: Observable<Sesion>;
+  usuarioAdmin$!: any;
 
-  constructor(private router: Router, private sesionService: SesionService) {}
+  constructor(private router: Router, private sesionService: SesionService,
+    private authStore: Store<AuthState>) {}
 
   
   async ngOnInit(): Promise<void> {
-    this.sesion$ = this.sesionService.obtenerSesion();
+    this.usuarioAdmin$ = this.authStore.select(selectUsuarioAdmin);
   }
 
   changeWrapper(type: string) {

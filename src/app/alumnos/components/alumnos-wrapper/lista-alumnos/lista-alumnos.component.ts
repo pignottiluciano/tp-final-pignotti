@@ -9,6 +9,9 @@ import { Alumno } from 'src/app/models/alumno';
 import { Sesion } from 'src/app/models/sesion';
 import { AddAlumnosComponent } from '../add-alumnos/add-alumnos.component';
 import { EditAlumnoComponent } from '../edit-alumno/edit-alumno.component';
+import { AuthState } from 'src/app/autenticacion/components/state/auth.reducer';
+import { Store } from '@ngrx/store';
+import { selectUsuarioAdmin } from 'src/app/autenticacion/components/state/auth.selectors';
 
 @Component({
   selector: 'app-lista-alumnos',
@@ -17,6 +20,7 @@ import { EditAlumnoComponent } from '../edit-alumno/edit-alumno.component';
 })
 export class ListaAlumnosComponent implements OnInit, OnDestroy {
   alumnos!: Alumno[];
+  usuarioAdmin$!: any;
 
   dataSource!: MatTableDataSource<Alumno>;
   columnas: string[] = ['nombreYApellido', 'edad', 'estado', 'editarEliminar'];
@@ -28,10 +32,11 @@ export class ListaAlumnosComponent implements OnInit, OnDestroy {
     private alumnoService: AlumnosService,
     private dialog: MatDialog,
     private sesionService: SesionService,
-    private router: Router
+    private router: Router,
+    private authStore: Store<AuthState>
   ) {}
   async ngOnInit(): Promise<void> {
-    this.sesion$ = this.sesionService.obtenerSesion();
+    this.usuarioAdmin$ = this.authStore.select(selectUsuarioAdmin);
     this.actualizarLista();
   }
 

@@ -12,12 +12,12 @@ export class HomeWrapperComponent implements OnInit {
   constructor(private sesion: SesionService, private router: Router){}
 
   ngOnInit(){
-    this.sesion.obtenerSesion().subscribe((sesion: Sesion) => {
-      console.log('Estado Sesaion', sesion)
-      if(!sesion.sesionActiva){
-        this.router.navigate(['auth/login']);
-      }
-    })
+    // this.sesion.obtenerSesion().subscribe((sesion: Sesion) => {
+    //   console.log('Estado Sesaion', sesion)
+    //   if(!sesion.sesionActiva){
+    //     this.router.navigate(['auth/login']);
+    //   }
+    // })
   }
 
 }
