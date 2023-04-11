@@ -10,6 +10,8 @@ import { SharedModule } from './shared/shared.module';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ToolbarComponent } from './core/components/main-wrapper/toolbar/toolbar.component';
 import { MenuComponent } from './core/components/main-wrapper/menu/menu.component';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
@@ -19,6 +21,8 @@ describe('AppComponent', () => {
         SharedModule,
         MaterialModule,
         MatDialogModule,
+        StoreModule.forRoot({}, {}),
+        EffectsModule.forRoot([])
       ],
       declarations: [
         AppComponent,

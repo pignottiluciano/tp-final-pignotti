@@ -5,4 +5,6 @@ export const cargarSesion = createAction(
   '[Auth] Sesion cargada',
   props<{ sesion: Sesion }>()
 );
-
+export const cargarAuths = createAction(
+  '[LoginState] Load LoginState'
+);

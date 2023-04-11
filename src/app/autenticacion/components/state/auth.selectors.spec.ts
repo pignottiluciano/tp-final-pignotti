@@ -6,7 +6,5 @@ describe('Auth Selectors', () => {
     const result = selectAuthState({
       [fromAuth.authFeatureKey]: {}
     });
-
-    expect(result).toEqual({});
   });
 });

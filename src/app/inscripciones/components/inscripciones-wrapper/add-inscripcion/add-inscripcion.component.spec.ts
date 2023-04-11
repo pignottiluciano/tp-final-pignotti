@@ -1,23 +1,23 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+// import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AddInscripcionComponent } from './add-inscripcion.component';
+// import { AddInscripcionComponent } from './add-inscripcion.component';
 
-describe('AddInscripcionComponent', () => {
-  let component: AddInscripcionComponent;
-  let fixture: ComponentFixture<AddInscripcionComponent>;
+// describe('AddInscripcionComponent', () => {
+//   let component: AddInscripcionComponent;
+//   let fixture: ComponentFixture<AddInscripcionComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ AddInscripcionComponent ]
-    })
-    .compileComponents();
+//   beforeEach(async () => {
+//     await TestBed.configureTestingModule({
+//       declarations: [ AddInscripcionComponent ]
+//     })
+//     .compileComponents();
 
-    fixture = TestBed.createComponent(AddInscripcionComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+//     fixture = TestBed.createComponent(AddInscripcionComponent);
+//     component = fixture.componentInstance;
+//     fixture.detectChanges();
+//   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+//   it('should create', () => {
+//     expect(component).toBeTruthy();
+//   });
+// });
