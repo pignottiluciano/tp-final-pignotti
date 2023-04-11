@@ -7,6 +7,10 @@ import { ListaUsuariosComponent } from './components/usuarios-wrapper/lista-usua
 import { AddUsuarioComponent } from './components/usuarios-wrapper/add-usuario/add-usuario.component';
 import { EditUsuarioComponent } from './components/usuarios-wrapper/edit-usuario/edit-usuario.component';
 import { SharedModule } from '../shared/shared.module';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { UsersEffects } from './state/usuarios-state.effects';
+import { reducer, usersStateFeatureKey } from './state/usuarios-state.reducer';
 
 
 @NgModule({
@@ -21,7 +25,9 @@ import { SharedModule } from '../shared/shared.module';
   imports: [
     CommonModule,
     SharedModule,
-    UsuariosRoutingModule
+    UsuariosRoutingModule,
+    StoreModule.forFeature(usersStateFeatureKey, reducer),
+    EffectsModule.forFeature([UsersEffects])
   ]
 })
 export class UsuariosModule { }

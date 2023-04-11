@@ -1,9 +1,12 @@
 import { Component, Inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Usuario } from 'src/app/models/usuario';
 import { UsuariosService } from 'src/app/usuarios/service/usuarios.service';
+import { AddUsuario } from 'src/app/usuarios/state/usuarios-state.actions';
+import { UsuariosState } from 'src/app/usuarios/state/usuarios-state.reducer';
 
 @Component({
   selector: 'app-add-usuario',
@@ -19,6 +22,7 @@ export class AddUsuarioComponent {
   constructor(
     private usuariosService: UsuariosService,
     public dialogRef: MatDialogRef<AddUsuarioComponent>,
+    private store : Store<UsuariosState>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     this.formularioAgregar = new FormGroup({
@@ -38,7 +42,7 @@ export class AddUsuarioComponent {
 
   addUsuario() {
     let id: number = this.usuarios.length;
-    const newAlumno: Usuario = {
+    const newUsuario: Usuario = {
       id: id + 1,
       usuario: this.formularioAgregar.value.usuario,
       nombre: this.formularioAgregar.value.nombre,
@@ -46,7 +50,7 @@ export class AddUsuarioComponent {
       contrasena: this.formularioAgregar.value.contasena,
       esAdmin: this.formularioAgregar.value.esAdmin
     };
-    this.usuariosService.agregarUsuario(newAlumno).subscribe((usuario: Usuario) => {
+    this.usuariosService.agregarUsuario(newUsuario).subscribe((usuario: Usuario) => {
       this.dialogRef.close(usuario);
     });
   }

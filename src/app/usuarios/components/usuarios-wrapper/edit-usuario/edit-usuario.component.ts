@@ -25,7 +25,7 @@ export class EditUsuarioComponent {
     });
   }
 
-  edit() {
+  editUsuario() {
     const usuario: Usuario = {
       id: this.data.id,
       usuario: this.formularioEditar.value.usuario,
