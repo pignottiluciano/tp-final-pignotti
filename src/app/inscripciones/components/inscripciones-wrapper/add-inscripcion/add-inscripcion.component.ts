@@ -51,13 +51,13 @@ export class AddInscripcionComponent {
     this.getAlumnosList();
     this.getCursosList();
     this.formularioInscripcion = new FormGroup({
-      alumno: new FormGroup({
+      alumno: new FormControl({
         id:new FormControl('', [Validators.required]),
         nombre:new FormControl('', [Validators.required]),
         apellido:new FormControl('',[Validators.required])
       }),
       fecha: new FormControl('', [Validators.required]),
-      curso: new FormGroup({
+      curso: new FormControl({
         id:new FormControl('', [Validators.required]),
         curso:new FormControl('', [Validators.required])
       }),
