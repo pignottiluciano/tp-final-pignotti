@@ -14,6 +14,7 @@ import { SharedModule } from './shared/shared.module';
 import { ModalComfirmComponent } from './core/components/modal-comfirm/modal-comfirm.component';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
+import { PageNoEncontradoComponent } from './core/components/page-no-encontrado/page-no-encontrado.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { EffectsModule } from '@ngrx/effects';
     ToolbarComponent,
     HomeWrapperComponent,
     ProfesoresWrapperComponent,
-    ModalComfirmComponent],
+    ModalComfirmComponent,
+    PageNoEncontradoComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

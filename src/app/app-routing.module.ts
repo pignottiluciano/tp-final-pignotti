@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeWrapperComponent } from './core/components/home-wrapper/home-wrapper.component';
+import { PageNoEncontradoComponent } from './core/components/page-no-encontrado/page-no-encontrado.component';
 import { ProfesoresWrapperComponent } from './core/components/profesores-wrapper/profesores-wrapper.component';
 import { AdminGuard } from './core/guards/admin.guard';
 import { SesionGuard } from './core/guards/sesion.guard';
@@ -21,7 +22,9 @@ const routes: Routes = [
     path: 'usuarios',
     canActivate: [AdminGuard],
     loadChildren: () =>
-      import('./usuarios/usuarios.module').then((modulo) => modulo.UsuariosModule),
+      import('./usuarios/usuarios.module').then(
+        (modulo) => modulo.UsuariosModule
+      ),
   },
   {
     path: 'cursos',
@@ -54,7 +57,7 @@ const routes: Routes = [
     redirectTo: 'inicio',
     pathMatch: 'full',
   },
-  { path: '**', component: HomeWrapperComponent },
+  { path: '**', component: PageNoEncontradoComponent },
 ];
 
 @NgModule({
