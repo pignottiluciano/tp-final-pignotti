@@ -8,7 +8,7 @@ import { SesionService } from 'src/app/core/service/sesion.service';
 import { Sesion } from 'src/app/models/sesion';
 import { Usuario } from 'src/app/models/usuario';
 import { UsuariosService } from 'src/app/usuarios/service/usuarios.service';
-import { EliminarUsuario } from 'src/app/usuarios/state/usuarios-state.actions';
+import { EliminarUsuario, usersLoaded } from 'src/app/usuarios/state/usuarios-state.actions';
 import { UsuariosState } from 'src/app/usuarios/state/usuarios-state.reducer';
 import { usersLoadedSelector } from 'src/app/usuarios/state/usuarios-state.selectors';
 import { AddUsuarioComponent } from '../add-usuario/add-usuario.component';
@@ -36,7 +36,9 @@ export class ListaUsuariosComponent {
     private store: Store<UsuariosState>
   ) {}
   async ngOnInit(): Promise<void> {
+    this.dataSource = new MatTableDataSource<Usuario>();
     this.sesion$ = this.sesionService.obtenerSesion();
+    this.usuarios$ = this.store.select(usersLoadedSelector);
     this.actualizarLista();
   }
 
@@ -46,19 +48,9 @@ export class ListaUsuariosComponent {
 
   actualizarLista() {
     this.usuarios$ = this.usuariosService.obtenerUsuarios();
-    this.suscription = this.usuarios$.subscribe((alumno: Usuario[]) => {
-      this.usuarios = alumno;
-      this.dataSource = new MatTableDataSource<Usuario>(this.usuarios);
-    });
-  }
-  refresh() {
-    this.usuarios$ = this.store.select(usersLoadedSelector);
-
-    this.usuarios$.subscribe((usersLoadedSelector) => {
-      this.usuarios = usersLoadedSelector;
-      console.log(usersLoadedSelector);
-      this.dataSource = new MatTableDataSource<Usuario>(usersLoadedSelector);
-      this.dataSource.data = usersLoadedSelector;
+    this.suscription  = this.usuarios$.subscribe((usuarios: Usuario[]) => {
+      this.usuarios = usuarios;
+      this.dataSource.data = usuarios;
     });
   }
 

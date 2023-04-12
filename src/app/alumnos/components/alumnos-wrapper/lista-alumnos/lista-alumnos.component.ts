@@ -12,6 +12,10 @@ import { EditAlumnoComponent } from '../edit-alumno/edit-alumno.component';
 import { AuthState } from 'src/app/autenticacion/components/state/auth.reducer';
 import { Store } from '@ngrx/store';
 import { selectUsuarioAdmin } from 'src/app/autenticacion/components/state/auth.selectors';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { AlumnoState } from 'src/app/alumnos/state/alumno-state.reducer';
+import { selectAlumnosCargados } from 'src/app/alumnos/state/alumno-state.selectors';
+import { eliminarAlumnoState } from 'src/app/alumnos/state/alumno-state.actions';
 
 @Component({
   selector: 'app-lista-alumnos',
@@ -33,10 +37,14 @@ export class ListaAlumnosComponent implements OnInit, OnDestroy {
     private dialog: MatDialog,
     private sesionService: SesionService,
     private router: Router,
-    private authStore: Store<AuthState>
+    private authStore: Store<AuthState>,
+    private store: Store<AlumnoState>,
+    private snackBar: MatSnackBar,
   ) {}
   async ngOnInit(): Promise<void> {
+    this.dataSource = new MatTableDataSource<Alumno>();
     this.usuarioAdmin$ = this.authStore.select(selectUsuarioAdmin);
+    this.alumnos$ =  this.store.select(selectAlumnosCargados);
     this.actualizarLista();
   }
 
@@ -58,7 +66,8 @@ export class ListaAlumnosComponent implements OnInit, OnDestroy {
     this.alumnos$ = this.alumnoService.obtenerAlumnos();
     this.suscription  = this.alumnos$.subscribe((alumno: Alumno[]) => {
       this.alumnos = alumno;
-      this.dataSource = new MatTableDataSource<Alumno>(this.alumnos);
+      console.log(alumno)
+      this.dataSource.data = alumno;
     });
   }
 
@@ -80,12 +89,9 @@ export class ListaAlumnosComponent implements OnInit, OnDestroy {
 
   eliminarUsuario(alumno: Alumno) {
     if (confirm('Quiere Eliminar este alumno?') && this.alumnos) {
-      this.alumnoService
-        .eliminarAlumno(alumno)
-        .subscribe((alumno: Alumno) => {
-
-          this.actualizarLista();
-        });
+      this.snackBar.open(`${alumno.nombre} eliminado satisfactoriamente`);
+      this.store.dispatch(eliminarAlumnoState({ alumno }));
+      this.actualizarLista();
     }
   }
 }
