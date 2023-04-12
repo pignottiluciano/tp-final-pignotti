@@ -74,16 +74,16 @@ export class ListaAlumnosComponent implements OnInit, OnDestroy {
   modalEdit(alumno: Alumno) {
     const dialogRef = this.dialog.open(EditAlumnoComponent, { data: alumno });
     dialogRef.afterClosed().subscribe((alumno: Alumno) => {
+      this.snackBar.open(`${alumno.nombre} ${alumno.apellido} editado satifactoriamente`);
       this.actualizarLista();
-      alert(`${alumno.nombre} ${alumno.apellido} editado satifactoriamente`);
     });
   }
 
   AgregarAlumno() {
     const dialogRef = this.dialog.open(AddAlumnosComponent, {});
     dialogRef.afterClosed().subscribe((alumno: Alumno) => {
+      this.snackBar.open(`${alumno.nombre} ${alumno.apellido} se agrego satifactoriamente`);
       this.actualizarLista();
-      alert(`${alumno.nombre} ${alumno.apellido} se agrego satifactoriamente`);
     });
   }
 
@@ -91,7 +91,6 @@ export class ListaAlumnosComponent implements OnInit, OnDestroy {
     if (confirm('Quiere Eliminar este alumno?') && this.alumnos) {
       this.snackBar.open(`${alumno.nombre} eliminado satisfactoriamente`);
       this.store.dispatch(eliminarAlumnoState({ alumno }));
-      this.actualizarLista();
     }
   }
 }

@@ -8,7 +8,10 @@ import { SesionService } from 'src/app/core/service/sesion.service';
 import { Sesion } from 'src/app/models/sesion';
 import { Usuario } from 'src/app/models/usuario';
 import { UsuariosService } from 'src/app/usuarios/service/usuarios.service';
-import { EliminarUsuario, usersLoaded } from 'src/app/usuarios/state/usuarios-state.actions';
+import {
+  EliminarUsuario,
+  usersLoaded,
+} from 'src/app/usuarios/state/usuarios-state.actions';
 import { UsuariosState } from 'src/app/usuarios/state/usuarios-state.reducer';
 import { usersLoadedSelector } from 'src/app/usuarios/state/usuarios-state.selectors';
 import { AddUsuarioComponent } from '../add-usuario/add-usuario.component';
@@ -48,28 +51,26 @@ export class ListaUsuariosComponent {
 
   actualizarLista() {
     this.usuarios$ = this.usuariosService.obtenerUsuarios();
-    this.suscription  = this.usuarios$.subscribe((usuarios: Usuario[]) => {
+    this.suscription = this.usuarios$.subscribe((usuarios: Usuario[]) => {
       this.usuarios = usuarios;
       this.dataSource.data = usuarios;
     });
   }
 
   modalEdit(usuario: Usuario) {
-    const dialogRef = this.dialog
-      .open(EditUsuarioComponent, { data: usuario })
-      .beforeClosed()
-      .subscribe(() => {
-        this.actualizarLista();
-      });
+    const dialogRef = this.dialog.open(EditUsuarioComponent, { data: usuario });
+
+    dialogRef.afterClosed().subscribe((usuario: Usuario) => {
+      this.actualizarLista();
+    });
   }
 
   AgregarUsuario() {
-    const dialogRef = this.dialog
-      .open(AddUsuarioComponent)
-      .beforeClosed()
-      .subscribe(() => {
-        this.actualizarLista();
-      });
+    const dialogRef = this.dialog.open(AddUsuarioComponent);
+
+    dialogRef.afterClosed().subscribe((usuario: Usuario) => {
+      this.actualizarLista();
+    });
   }
 
   eliminarUsuario(usuario: Usuario) {
