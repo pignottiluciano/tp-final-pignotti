@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
@@ -36,7 +37,8 @@ export class ListaUsuariosComponent {
     private dialog: MatDialog,
     private sesionService: SesionService,
     private router: Router,
-    private store: Store<UsuariosState>
+    private store: Store<UsuariosState>,
+    private snackBar: MatSnackBar
   ) {}
   async ngOnInit(): Promise<void> {
     this.dataSource = new MatTableDataSource<Usuario>();
@@ -61,6 +63,9 @@ export class ListaUsuariosComponent {
     const dialogRef = this.dialog.open(EditUsuarioComponent, { data: usuario });
 
     dialogRef.afterClosed().subscribe((usuario: Usuario) => {
+      
+      this.snackBar.open(`${usuario.nombre} ${usuario.apellido} se edito satifactoriamente`);
+      
       this.actualizarLista();
     });
   }
@@ -69,6 +74,8 @@ export class ListaUsuariosComponent {
     const dialogRef = this.dialog.open(AddUsuarioComponent);
 
     dialogRef.afterClosed().subscribe((usuario: Usuario) => {
+      
+      this.snackBar.open(`${usuario.nombre} ${usuario.apellido} se agrego satifactoriamente`);
       this.actualizarLista();
     });
   }
@@ -76,6 +83,9 @@ export class ListaUsuariosComponent {
   eliminarUsuario(usuario: Usuario) {
     if (confirm('Quiere Eliminar este alumno?') && this.usuarios) {
       this.store.dispatch(EliminarUsuario({ usuario: usuario }));
+      
+      this.snackBar.open(`${usuario.nombre} ${usuario.apellido} se elimino`);
+      
       this.actualizarLista();
     }
   }

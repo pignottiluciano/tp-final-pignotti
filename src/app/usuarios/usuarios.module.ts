@@ -11,23 +11,24 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { UsersEffects } from './state/usuarios-state.effects';
 import { reducer, usersStateFeatureKey } from './state/usuarios-state.reducer';
-
+import { MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
-  
-  
     UsuariosWrapperComponent,
-          ListaUsuariosComponent,
-          AddUsuarioComponent,
-          EditUsuarioComponent
+    ListaUsuariosComponent,
+    AddUsuarioComponent,
+    EditUsuarioComponent,
   ],
   imports: [
     CommonModule,
     SharedModule,
     UsuariosRoutingModule,
     StoreModule.forFeature(usersStateFeatureKey, reducer),
-    EffectsModule.forFeature([UsersEffects])
-  ]
+    EffectsModule.forFeature([UsersEffects]),
+  ],
+  providers: [
+    { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { duration: 2500 } },
+  ],
 })
-export class UsuariosModule { }
+export class UsuariosModule {}

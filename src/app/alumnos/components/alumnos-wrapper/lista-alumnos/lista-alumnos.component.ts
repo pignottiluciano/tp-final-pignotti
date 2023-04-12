@@ -39,12 +39,12 @@ export class ListaAlumnosComponent implements OnInit, OnDestroy {
     private router: Router,
     private authStore: Store<AuthState>,
     private store: Store<AlumnoState>,
-    private snackBar: MatSnackBar,
+    private snackBar: MatSnackBar
   ) {}
   async ngOnInit(): Promise<void> {
     this.dataSource = new MatTableDataSource<Alumno>();
     this.usuarioAdmin$ = this.authStore.select(selectUsuarioAdmin);
-    this.alumnos$ =  this.store.select(selectAlumnosCargados);
+    this.alumnos$ = this.store.select(selectAlumnosCargados);
     this.actualizarLista();
   }
 
@@ -64,9 +64,9 @@ export class ListaAlumnosComponent implements OnInit, OnDestroy {
 
   actualizarLista() {
     this.alumnos$ = this.alumnoService.obtenerAlumnos();
-    this.suscription  = this.alumnos$.subscribe((alumno: Alumno[]) => {
+    this.suscription = this.alumnos$.subscribe((alumno: Alumno[]) => {
       this.alumnos = alumno;
-      console.log(alumno)
+      console.log(alumno);
       this.dataSource.data = alumno;
     });
   }
@@ -74,7 +74,9 @@ export class ListaAlumnosComponent implements OnInit, OnDestroy {
   modalEdit(alumno: Alumno) {
     const dialogRef = this.dialog.open(EditAlumnoComponent, { data: alumno });
     dialogRef.afterClosed().subscribe((alumno: Alumno) => {
-      this.snackBar.open(`${alumno.nombre} ${alumno.apellido} editado satifactoriamente`);
+      this.snackBar.open(
+        `${alumno.nombre} ${alumno.apellido} editado satifactoriamente`
+      );
       this.actualizarLista();
     });
   }
@@ -82,15 +84,18 @@ export class ListaAlumnosComponent implements OnInit, OnDestroy {
   AgregarAlumno() {
     const dialogRef = this.dialog.open(AddAlumnosComponent, {});
     dialogRef.afterClosed().subscribe((alumno: Alumno) => {
-      this.snackBar.open(`${alumno.nombre} ${alumno.apellido} se agrego satifactoriamente`);
+      this.snackBar.open(
+        `${alumno.nombre} ${alumno.apellido} se agrego satifactoriamente`
+      );
       this.actualizarLista();
     });
   }
 
-  eliminarUsuario(alumno: Alumno) {
+  async eliminarUsuario(alumno: Alumno) {
     if (confirm('Quiere Eliminar este alumno?') && this.alumnos) {
-      this.snackBar.open(`${alumno.nombre} eliminado satisfactoriamente`);
-      this.store.dispatch(eliminarAlumnoState({ alumno }));
+        this.store.dispatch(eliminarAlumnoState({ alumno }));
+        this.snackBar.open(`${alumno.nombre} eliminado satisfactoriamente`);
+        this.actualizarLista();
     }
   }
 }

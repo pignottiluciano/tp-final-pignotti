@@ -39,6 +39,7 @@ export class MenuComponent implements OnInit {
       sesionActiva: false,
     };
     this.sesionService.logout(sesion);
+    window.location.reload();
     this.router.navigate(['auth/login']);
   }
 }
