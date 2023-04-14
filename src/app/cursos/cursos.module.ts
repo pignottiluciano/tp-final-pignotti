@@ -6,6 +6,7 @@ import { ListaCursosComponent } from './components/cursos-wrapper/lista-cursos/l
 import { CursosRoutingModule } from './cursos-routing.module';
 import { EditCursoComponent } from './components/cursos-wrapper/edit-curso/edit-curso.component';
 import { SharedModule } from '../shared/shared.module';
+import { MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
 
 
 
@@ -20,6 +21,9 @@ import { SharedModule } from '../shared/shared.module';
     CommonModule,
     SharedModule,
     CursosRoutingModule
+  ],
+  providers: [
+    { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { duration: 2500 } },
   ]
 })
 export class CursosModule { }
